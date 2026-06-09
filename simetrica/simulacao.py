@@ -14,6 +14,7 @@ print("-" * 60)
 print("=" * 60)
 print("Bob entra no chat e recebe os parâmetros de Alice")
 bob.receber_parametros_do_canal(primo=alice.primo, gerador=alice.gerador)
+
 print("-" * 60)
 
 print("=" * 60)
@@ -21,6 +22,7 @@ print("Alice e Bob calculam suas chaves públicas")
 alice_pub = alice.calcular_chave_publica()
 bob_pub = bob.calcular_chave_publica()
 print("-" * 60)
+
 
 print("=" * 60)
 print(f"Chave pública de Alice (viajou pela rede): {alice_pub}")
@@ -33,6 +35,7 @@ alice.calcular_chave_secreta(bob_pub)
 bob.calcular_chave_secreta(alice_pub)
 print("-" * 60 + "\n")
 
+print(f"Parâmetros do canal - Primo: {alice.primo}, Gerador: {alice.gerador}, Chave Privada de Alice: {alice._chave_privada}, Chave Privada de Bob: {bob._chave_privada}, Chave Secreta do Chat: {alice.chave_secreta_chat} x {bob.chave_secreta_chat}")
 
 print("=" * 60 + "\n")
 print(
@@ -50,7 +53,8 @@ print(
     f"Testando a criptografia ponta-a-ponta na prática usando a chave AES compartilhada"
 )
 print("--- Alice enviando Mensagem ---")
-mensagem_de_alice = "Olá, Bob!"
+# mensagem_de_alice = "Olá, Bob!"
+mensagem_de_alice = input("Digite a mensagem que Alice vai enviar para Bob: ").strip()
 
 nonce_alice, pacote_cifrado_alice = alice.enviar_mensagem(mensagem_de_alice)
 
@@ -65,7 +69,8 @@ print(f"Mensagem que apareceu na tela de Bob: {mensagem_recebida}")
 
 print("\n" + "=" * 60)
 print("--- Simular resposta do Bob para Alice ---")
-mensagem_de_bob = "Olá Alice, e aí tudo bem? O que manda?"
+# mensagem_de_bob = "Olá Alice, e aí tudo bem? O que manda?"
+mensagem_de_bob = input("Digite a mensagem que Bob vai enviar para Alice: ").strip()
 
 nonce_bob, pacote_cifrado_bob = bob.enviar_mensagem(mensagem_de_bob)
 

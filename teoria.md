@@ -1,91 +1,116 @@
-## Um Pouco de História
+## 📜 Um Pouco de História
 
-Iniciando por entender o que é criptografia, eu fui curiosamente observer de onde surgiu a ideia e os casos de uso que datam desde a antiguidade. Há quanto tempo as pessoas têm segredos que querem manter deste modo de outras pessoas. Mas que tais mensagens possam ser alcançadas a pessoas de interesse.
+Para entender o que é criptografia, vale a pena observar de onde surgiu a ideia e seus casos de uso que datam desde a antiguidade. Há milênios as pessoas possuem segredos que desejam proteger de terceiros, garantindo que tais mensagens alcancem apenas as partes de interesse.
 
-A criptografia nada mais é que o ato de embaralhar um conteúdo utilizando uma sequência lógica de ações que pode ser revertida. Se a criptografia não puder ser revertida, não há nenhum sentido uma vez que o conteúdo será perdido por completo, deste jeito, melhor seria descartá-lo.
+A criptografia nada mais é do que o ato de embaralhar um conteúdo utilizando uma sequência lógica de ações que pode ser revertida. Se a criptografia não puder ser desfeita, ela perde o sentido, pois o conteúdo original seria perdido por completo — para isso, melhor seria apenas descartar o dado.
 
-Eu vi os primeiros sinais no Egito com os hieroglifos, que consistia na substituição de letras ou palavras por figuras, para que os segredos permanecessem ocultos. E há outros exemplos na história, que para este trabalho não faz sentido detalhar, terei um documento anexado a este repositório com mais detalhes a quem possa interessar.
+Vemos os primeiros sinais dessa prática no Egito Antigo com os hieróglifos, que consistiam na substituição de letras ou palavras por figuras para manter os segredos ocultos. Anterior à era dos computadores, métodos clássicos como a **Cifra de César** operavam por substituição simples: cada caractere era trocado pelo elemento que estava três posições à sua frente no alfabeto. Por ser um padrão fixo e linear, era uma cifra muito fácil de ser quebrada.
 
-Anterior à era dos computadores havia métodos de criptografia como a dos egípcios ou como a cifra de César que nada mais era que substituir um caracter por outro, e esta substituição era bem simples e fácil de quebrar. Um caractere era substituído por outro encontrado três posições à sua frente no alfabeto ou sequência.
+#### Exemplo da Cifra de César
 
-Exemplo da Cifra de César:
+A palavra `criptografia` viraria `fumsxrjudimd`.
 
-A palavra criptografia viraria fumsxrjudimd
+### A evolução das chaves e a Cifra de Ottendorf
 
-Uma das mais simples técnicas de criptografia.
+Com o tempo, introduziu-se o conceito de **chave criptográfica**. Uma forma de tornar mesmo os métodos de substituição mais complexos, garantindo que a decifragem só fosse possível se você estivesse em posse da chave correta.
 
-Após algumas evoluções no processo de criptografia foi-se inserida a ideia de chave criptográfica. Uma forma de tornar, mesmo o método de substuição mais complicado, sendo possível a decifragem da mensagem apenas em posse de uma chave.
+Em livros e filmes de espionagem, é comum vermos mensagens cuja chave está oculta nas páginas de uma obra literária específica. Essa é a mecânica da **Cifra de Ottendorf**.
 
-Vemos muitos filmes que para a mensagem ser decifrada a chave está espalhada por um livro. Como era a cifra de Ottendorf?
+Para que funcione, o remetente e o destinatário precisam possuir exatamente o mesmo livro e a mesma edição. A cifra consiste em uma sequência numérica que aponta para: o número da página ($np$), o número da linha ($nl$) e a posição da palavra na linha ($pp$), contando da esquerda para a direita.
 
-Primeiro o destinatário tem de ter acesso ao mesmo livro que o remetente e a edição exata do livro. Então a cifra é uma sequência numérica da número da página (np), número da linha (nl), posição da palavra na linha, contando da esquerda para a direita (pp).
+* **Formato do Código:** `121.7.5` $\rightarrow$ Página 121, linha 7, palavra 5.
 
-Formato do Código: 121.7.5: Página 121, linha 7, palavra 5.
+#### Pontos Fortes
 
-Pontos Fortes da cifra de Ottendorf:
+* **Resistência à força bruta:** Não há uma estrutura matemática óbvia para quebrar o código. O atacante precisaria descobrir o livro físico exato e a sua respectiva edição.
+* **Segurança por obscuridade:** A mensagem parece apenas uma lista aleatória de números. Se o atacante sequer souber que se trata de uma Cifra de Ottendorf, os números jamais farão sentido.
 
-- Resistência à força bruta: não há uma chave matemática para quebrar o código. O hacker precisaria saber qual é o livro físico e a edição do livro para conseguir decifrar o código.
+#### Pontos Fracos
 
-- Segurança: Por conta da obscuridade a mensagem parece apenas um monte de números aleatórios. Se o atacante nem mesmo souber que se trata de uma cifra de Ottendorf os números jamais terão um significado e depois de descobrir que se trata de tal técnica, ainda teria de descobrir o livro e a edição.
+* **Padrões linguísticos:** Mensagens longas fatalmente repetem palavras comuns (como preposições e artigos), abrindo brechas para a análise de frequência.
+* **Dependência total do meio:** Se o destinatário perder o seu exemplar do livro, a mensagem torna-se permanentemente inutilizável.
 
-Mas qual é o ponto fraco?
-Não muito raro as mensagens possuem palavras comuns, como as preposições e artigos, e assim há a vulnerabilidade a padrões. Outro ponto fraco é a dependência total, se o destinatário perder o exemplar do livro a mensagem está completamente inutilizada, sendo impossível decifrar.
+Com o advento das cifras eletromecânicas, como a famosa máquina **Enigma**, foi possível criar chaves rotativas muito mais robustas. Contudo, como qualquer corrente é tão forte quanto o seu elo mais fraco, a Enigma dependia de operadores humanos para configurar suas chaves diárias. Humanos tendem a repetir padrões, e analistas atentos (como a equipe de Alan Turing) conseguiram explorar essas falhas de comportamento para quebrar o sistema.
 
-Com a invenção das cifras eletrônicas como a máquina enigma, foi possível criar chaves mais fortes e criptografias mais poderosas. Mas como sabemos qualquer corrente é tão forte quanto o seu elo mais fraco, no caso da enigma, a sua dependência de pessoas criarem suas chaves, tornou-a factível de falhas, pois as pessoas tendem a repetir padrões e aí o analista muito atento e experiente poderá quebrar a mensagem por observar o histórico. Para mais detalhes a respeito disso aconselho o leitor a assistir aos filmes: Enigma - O jogo da Imitação (2014) e Enigma (2001).
+> 🎬 **Dica de filme:** Para entender os bastidores da quebra da Enigma, recomendo assistir a *O Jogo da Imitação (2014)* e *Enigma (2001)*.
 
-Depois disso, a Enigma foi só evoluindo e os métodos de criptografia também. Atualmente com o uso dos computadores, as tecnicas de criptografia estão poderosíssimas, beirando o impossível de quebra. Por que digo 'beirando o impossível'? Porque não sabemos como isso irá ficar com o advento da computação quântica.
+Hoje, com o uso de computadores, as técnicas de criptografia moderna são tão poderosas que beiram o impossível de serem quebradas por força bruta. Dizemos "beirando o impossível" porque o cenário futuro com o advento da computação quântica ainda é uma incógnita.
 
-## Um pouco da matemática
+---
 
-Atualmente, há uma forma de criptografia aceitavelmente segura que é a criação de uma única chave criptográfica para cifrar e decifrar uma mensagem. Assim como eram os métodos criptográficos mais antigos, a mesma chave para embaralhar a mensagem, deve ser usada para desembaralhar.
+## 🧠 Um Pouco de Matemática
 
-A comunicação on line, contudo, se mostra insegura para transportar a chave, uma vez essa mensagem sendo interceptada, o atacante terá acesso a todo conteúdo trafegado, não é verdade? Então como fazer o destinatário saber a chave usada pelo remetente sem que a segurança da informação seja comprometida?
+Atualmente, uma das formas mais eficientes de proteger dados em repouso é a **criptografia simétrica**, onde uma única chave secreta é utilizada tanto para cifrar quanto para decifrar a mensagem.
 
-Há um método chamado Diffie-Hellman que é a melhor solução que eu conheço. Perceba que eu não disse que é a melhor solução que existe, mas que eu conheço, se você conhece outras soluções e melhores, manda aqui para que eu possa pesquisar.
+Contudo, a comunicação online impõe um desafio: como fazer o destinatário saber qual chave foi usada pelo remetente sem transmitir a própria chave pela rede (onde ela poderia ser interceptada)?
 
-O método utilizar o conceito de relógio modular.
-Imagine que você quer calcular 46 mod 12. Então você pega uma corda de 46 unidades de comprimento, e enrola em volta de um relógio dividido em 12 unidades, o lugar onde a ponta da corda parar é o resultado
+O protocolo **Diffie-Hellman** é a solução ideal para este problema. Ele utiliza o conceito de **aritmética modular** (a matemática do relógio).
+
+Imagine que queremos calcular $46 \pmod{12}$. Pense em uma corda com 46 unidades de comprimento sendo enrolada em volta de um relógio que possui apenas 12 horas. O ponto exato onde a ponta da corda parar será o nosso resultado.
+
 ![relógio modular](./simetrica/images/relogio_modular.png)
 
-Neste caso a solução e 10, então
+Neste caso, a corda dá 3 voltas completas ($12 \times 3 = 36$) e sobram 10 unidades. Portanto:
 
-$\ 46 \mod 12 \equiv 10$
+$$46 \equiv 10 \pmod{12}$$
 
-Mas fica parecendo que só pode ser usado o relógio de 12h, mas na verdade você pode usar o conceito de módulos primos, em que o relógio será do tamanho de algum número primo, como por exemplo 17. Precisamos calcular a `raiz primitiva` de 17, que não é 4, pois não estamos falando de raiz quadrada. A Raiz primitiva é um número que se elevarmos a diferentes expoentes, e calculando o resultado pelo módulo de 17, encontramos os diferentes números do relógio sem que haja repetição até a conclusão da primeira volta. E como calculamos a volta? Pelos expoentes. vamos ver o exemplo do 17?
+Na criptografia, em vez do número 12, utilizamos um **módulo primo** ($p$), como o número 17. Para que o protocolo seja seguro, precisamos encontrar uma **raiz primitiva** (também chamada de **gerador** $g$) desse número primo.
 
-As horas do relógio com 16 horas vai de 1 até 16, o 17 vira 0.
+Uma raiz primitiva não tem relação com a raiz quadrada. Ela é um número que, quando elevado a potências sucessivas de $1$ até $p-1$, gera como resto todos os números do relógio de forma embaralhada, **sem repetir nenhum**, até fechar o ciclo.
 
-Dizemos que um número $g $ é raiz primitiva de 17, se quando começarmos a elevar esse número a potências sucessivas $\ (g^1, g^2, g^3, g^4, ..., g^{16}) $, o resto da divisão por 17 passar por todos os números de 1 a 16 sem repetir nenhum, até dar a volta completa.
+#### Testando se o número 3 é uma raiz primitiva de 17
 
-- $ 3^1 mod 17 = 3$, pois o resto da divisão 3/17  é  3
-- $ 3^2 mod 17 = 9$
-- $ 3^3 mod 17 \rightarrow (27-17)$ resto 10
-- $ 3^4 mod 17 \rightarrow ( 81 \div 17 )$ dá 4 voltas e sobra 13, resto 13
-- $ 3^5 = 243 \rightarrow $ resto 5
-- $ 3^6 = 729  \rightarrow $ resto 15
-- $ 3^7 = 2.187 \rightarrow $ resto 11
-- $ 3^8 = 6.561 \rightarrow $ resto 16
-- $ 3^9 = 19.683 \rightarrow $ resto 14
-- $ 3^{10} = 59.049\rightarrow $ resto 8
-- $ 3^{11} = 177.147 \rightarrow $ resto 7
-- $ 3^{12} = 531.441 \rightarrow $ resto 4
-- $ 3^{13} = 1.594.323 \rightarrow $ resto 12
-- $ 3^{14} = 4.782.969 \rightarrow $ resto 2
-- $ 3^{15} = 129.140.163\rightarrow $ resto 3
-- $ 3^{16} = 43.046.721\rightarrow $ resto 1
+* $3^1 \pmod{17} = 3$
+* $3^2 \pmod{17} = 9$
+* $3^3 \pmod{17} = 10 \quad \text{(pois } 27 - 17 = 10\text{)}$
+* $3^4 \pmod{17} = 13 \quad \text{(pois } 81 - 68 = 13\text{)}$
+* $3^5 \pmod{17} = 5$
+* $3^6 \pmod{17} = 15$
+* $3^7 \pmod{17} = 11$
+* $3^8 \pmod{17} = 16$
+* $3^9 \pmod{17} = 14$
+* $3^{10} \pmod{17} = 8$
+* $3^{11} \pmod{17} = 7$
+* $3^{12} \pmod{17} = 4$
+* $3^{13} \pmod{17} = 12$
+* $3^{14} \pmod{17} = 2$
+* $3^{15} \pmod{17} = 3$
+* $3^{16} \pmod{17} = 1$
 
-Outra caracterírtica é que $ g^{p-1} mod$ p $ \equiv 1 $
+Note que o número 1 só aparece na última rodada, respeitando o Pequeno Teorema de Fermat:
 
-Esta característica de não ter uma forma direta de calcular a razi primitiva é que torna tal método tão atraente para usar em criptografia.
+$$g^{p-1} \equiv 1 \pmod p$$
 
-*Fantástico não é!!*
+O fato de não existir uma fórmula direta para encontrar essas raízes primitivas (obrigando o uso de testes sequenciais) é parte do que torna a matemática modular tão atraente para a segurança.
 
-Importante frizar que um número primo pode possuir mais que uma raiz primitiva, entretanto, por enquanto utilizamos apenas a primeira raiz primitiva no processo de cifragem. Lembrando que estamos falando aqui do método Diffie-Hellman para compartilhamento de chaves públicas e secretas.
+---
 
-Agora que temos a raiz primitiva que também é chamada de `gerador` e o número primo 17, podemos começar o processo de compartilhamento de chave e criação da chave secreta.
+## 🤝 O Aperto de Mão (Handshake) na Prática
 
-Vamos supor que Eu (E) e Você (V) queremos começar a conversar no chat, para que ELE (ELE), kkk criativo não é? 😂. Não leia nossas mensagens precisamos dar um aperto de mãos para que a conversa fique apenas entre nós.
+Imagine que **Eu ("E")** e **Você ("V")** queremos conversar em um aplicativo de chat sem que o bisbilhoteiro **"ELE"** consiga ler nossas mensagens. Para simplificar, vamos ilustrar o cenário usando números propositalmente pequenos.
 
-Olha como o processo é lindo.
+Como "Eu" vou iniciar a conversa, meu aplicativo gera os parâmetros do canal e calcula a minha chave pública, enviando o seguinte pacote de dados em formato JSON:
 
-Imagine que em uma paleta você misture tintas na cor azul e amarela, você obterá uma terceira cor, a verde. Como você faria para obter novamente as duas porções de amarelo e azul? 🤔. Não há como, é um caminho só de ida. Assim também é o problema do logaritmo discreto
+```json
+{
+  "de": "eu",
+  "para": "voce",
+  "gerador": 5,
+  "primo": 13,
+  "chave_publica": 8,
+  "mensagem": "cbf65b8d93bb2250940c3a37598d0b986c2b5b4c5e8565322c690b"
+}
+```
+
+Como a minha chave pública foi calculada?O meu aplicativo sorteou um número secreto privado (que nunca sai do meu celular), por exemplo, 15. Utilizando o gerador 5 e o primo 13, a conta foi:$$5^{15} \pmod{13} = 8$$Você recebe esse pacote. Para responder e fechar o aperto de mão, seu aplicativo escolhe o seu próprio número secreto privado, por exemplo, 17, e calcula a sua chave pública:$$5^{17} \pmod{13} = 5$$O seu aplicativo me responde com o seguinte pacote JSON:
+
+```json
+{
+  "de": "voce",
+  "para": "eu",
+  "chave_publica": 5,
+  "mensagem": "4fa28646dea56beffe5c3567a18d7b4c8664ac44c98a5db6f5a91a71e48ad6aed092"
+}
+```
+
+A Magia do Acordo de ChavesAgora eu tenho a sua chave pública (5) e você tem a minha chave pública (8). Veja o que acontece quando cada dispositivo calcula o segredo final localmente:No meu dispositivo (Eu): pego a sua chave pública (5) e elevo ao meu segredo (15):$$5^{15} \pmod{13} = 8$$No seu dispositivo (Você): pega a minha chave pública (8) e eleva ao seu segredo (17):$$8^{17} \pmod{13} = 8$$Ambos chegamos exatamente ao número 8! A nossa chave simétrica do chat está criada.Por que os resultados dão iguais?Isso acontece devido à propriedade de potência de potência.Eu calculei $(5^{17})^{15} \pmod{13}$, enquanto você calculou $(5^{15})^{17} \pmod{13}$. Em ambos os lados, a matemática subjacente executou a mesma operação: $5^{17 \times 15} \pmod{13}$. Como a ordem dos fatores não altera o produto dos expoentes, o resultado do resto é microscopicamente obrigado a ser idêntico nas duas pontas.O processo é fantástico: na tela de "Você" aparece Oi, e aí? e na minha aparece Beleza, e por aí?. Trafegamos os dados em texto claro nos nossos aparelhos, mas o "ELE", que estava monitorando a rede e interceptou os pacotes, só conseguiu ver os dados públicos transitando (g=5, p=13, público_eu=8, público_voce=5).Como "ELE" não possui os segredos privados (15 e 17), ele se depara apenas com blocos de lixo eletrônico ilegíveis: cbf65b8d93... e 4fa28646de....🎨 O Problema do Logaritmo DiscretoMas por que, tendo acesso aos números 5, 13, 8 e 5, o atacante não consegue reverter a conta para descobrir os nossos segredos práticos?Imagine que você misture tintas azul e amarela em uma paleta; você obterá a cor verde. Se alguém te entregar o pote de tinta verde, como você faria para separar fisicamente as porções exatas e originais do azul e do amarelo de volta? Não há como. É um processo de via única.Na matemática, essa mistura destrutiva é chamada de Problema do Logaritmo Discreto. No mundo real, os parâmetros utilizados possuem chaves que variam entre 300 e 600 dígitos. Descobrir os expoentes privados a partir dos resultados modulares exigiria tanto poder de processamento que mesmo combinando todos os supercomputadores do planeta, o cálculo levaria bilhões de anos para ser concluído. A nossa conversa está perfeitamente segura.
