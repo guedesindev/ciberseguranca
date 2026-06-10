@@ -48,7 +48,7 @@ O protocolo **Diffie-Hellman** é a solução ideal para este problema. Ele util
 
 Imagine que queremos calcular $46 \pmod{12}$. Pense em uma corda com 46 unidades de comprimento sendo enrolada em volta de um relógio que possui apenas 12 horas. O ponto exato onde a ponta da corda parar será o nosso resultado.
 
-![relógio modular](./simetrica/images/relogio_modular.png)
+![relógio modular](.\images\relogio_modular.png)
 
 Neste caso, a corda dá 3 voltas completas ($12 \times 3 = 36$) e sobram 10 unidades. Portanto:
 

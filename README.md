@@ -29,7 +29,7 @@ cd simetrica
 E executar o compando python:
 
 ```python
-python simulacao.py
+python_simulacao.py
 ```
 
 Verá o passo a passo no prompt da criação dos códigos públicos, chave pública, chave secreta, cifragem de mensagem e decifragem da mesma, de uma ponta a outra.
@@ -44,5 +44,9 @@ Módulos:
  secrets # é muito mais seguro que random por conta das repetições da random
  cryptography
 ```
+
+## Teoria por trás
+
+Para entender um pouco a respeito do assunto e métodos utilizados na construção da classe no arquivo `script_simetrica.py` leia o arquivo `![teoria.md]("./teoria.md")`
 
 ### Assimétrica
