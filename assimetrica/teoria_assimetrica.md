@@ -184,7 +184,7 @@ Por exemplo:
 
 Oi Em bytes vira:
 
-| Letra | Decimal | Binário |
+| Letra | Código ASCII | Binário |
 | :---: | :---: | :---: |
 | O | 79 | 0100 1111 |
 | i | 105 | 0110 1001 |
