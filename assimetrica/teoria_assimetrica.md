@@ -16,7 +16,7 @@ Imagine que uma pessoa quer enviar um pacote para outra, mas quer ter certeza qu
 
 Então o destinatário recebe a caixa e abre com a chave que apenas ele possui. Tá a análogia do cadeado é legal, mas e se mais de uma pessoa quiser enviar pacotes ao mesmo tempo? Aí é que está a coisa, o destinatário tem vários cadeados e possui uma chave mestra que abre todos eles, então, pode enviar o cadeado para trancar vários pacotes ao mesmo tempo e poderá abrir todos eles com a mesma chave gran-mestra.
 
-![Chave Gran-Mestra](images\chave_gran_mestra.jpeg)
+![Chave Gran-Mestra](images/chave_gran_mestra.jpeg)
 
 Os cadeados podem ser compartilhados com qualquer um, desde que a chave seja de posse apenas do destinatário.
 
@@ -124,7 +124,7 @@ $$C^d mod (n) \equiv O$$
 
 Agora vamos conhecer aqui a tabela ASCII, pois a mensagem original e a mensagem decifrada utilizarão a mesma tabela, para os cálculos.
 
-![Tabela ASCII](images\tabela_ascii_completa.jpeg)
+![Tabela ASCII](images/tabela_ascii_completa.jpeg)
 
 A tabela acima traz uma conversão dos bytes utilizados para representar cada caractere do idioma em números inteiros.
 Vamos supor que a `Alice` quer enviar a mensagem "Oi" para o `Bob`, como essa mensagem será cifrada?
