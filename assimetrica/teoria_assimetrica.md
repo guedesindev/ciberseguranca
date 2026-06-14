@@ -140,7 +140,7 @@ Do lado de Alice a mensagem oi é codificada da seguinte forma
 | O = 79 <br> i = 105 | Oi = 79105 |
 
 Para cifrar Alice faz:
-$$ C = O^e (mod) 15 $$
+$$ C = O^e (mod) 80851 $$
 
 $$ C = 79105^3 (mod) 80851 \therefore C = 3790$$
 
@@ -150,29 +150,43 @@ Quando Bob recebe a mensagem cifrada de Alice faz o seguinte cálculo:
 
 $$ C^d (mod n) $$
 
-Ué mas quem é *d*? Até agora não falamos dele. Mas matemáticamente sabemos que:
+Ué mas quem é *d*? Até agora não falamos dele. Mas matematicamente sabemos que:
 
 $$ ed \equiv 1(mod(p-1)(q-1))$$
 
-sabemos que $ e = 3, p = 3, q = 5 $
+sabemos também que $ e = 3, p = 3, q = 5 $
 Então,
 $$ ed \equiv 1(mod(p-1)(q-1)) $$
 $$ 3d \equiv 1(mod(233-1)(347-1)) $$
 $$ 3d \equiv 1(mod(232)(346)) $$
 $$ 3d \equiv 1(mod(80272)) \implies 3d (mod(80272)) = 1$$
 
-Qual número que multiplicado por 3 e dividido por 80272 deixa resto 1? Ao proceder com este cálculo encontramos o valor de d.
-então se $ 3d mod(80272) = 1 $ então $ d = 53515 $
+Qual número que multiplicado por 3 e dividido por 80272 deixa resto 1?
 
-Assim sendo, $ C^d (mod(15)) $ resulta na mensagem original.
+Ao proceder com este cálculo encontramos o valor de d.
+
+Então se $$ 3d (mod(80272)) = 1 \therefore d = 53515 $$
+
+Assim sendo, $$ C^d (mod(80851)) $$ resulta na mensagem original.
 $$ 3790^{53515} (mod(80851)) \equiv  79105$$
 
 Veja que agora Bob lê 79105.
 
-Mas aí fica a perqunta: Como que 79105 vira Oi e não outra coisa?
-COmo sabe que deve agrupar os bytes?
+Mas aí fica a perqunta:
 
-A transformação em binário impede a confusão, por exemplo:
-Oi Em bytes vira: 79 = 0100 1111 e 105 = 0110 1001, este agrupamento, quando trasnmitido informa ao recebitor como ler 79105. Só a título de curiosidade.
+Como que 79105 vira Oi e não outra coisa?
+
+Como sabe que deve agrupar os bytes?
+
+A transformação em binário impede a confusão.
+
+Por exemplo:
+
+Oi Em bytes vira:
+
+79 = 0100 1111<br>
+105 = 0110 1001
+
+Este agrupamento, quando trasnmitido informa ao receptor como ler 79105. Só a título de curiosidade 😉.
 
 Agora entendemos como funciona o algoritmo RSA de criptografia assimétrica que é o padrão ouro atualmente de segurança de menagens atualmente.
