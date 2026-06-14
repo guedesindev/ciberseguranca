@@ -184,8 +184,10 @@ Por exemplo:
 
 Oi Em bytes vira:
 
-79 = 0100 1111<br>
-105 = 0110 1001
+| Letra | Decimal | Binário |
+| :---: | :---: | :---: |
+| O | 79 | 0100 1111 |
+| i | 105 | 0110 1001 |
 
 Este agrupamento, quando trasnmitido informa ao receptor como ler 79105. Só a título de curiosidade 😉.
 
