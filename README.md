@@ -50,3 +50,5 @@ Módulos:
 Para entender um pouco a respeito do assunto e métodos utilizados na construção da classe no arquivo `script_simetrica.py` leia o arquivo `![teoria.md]("./teoria.md")`
 
 ### Assimétrica
+
+Importante que inicialmente leia as teorias nos arquivos `teaoria.md`. Somente depois tentar proceder com os testes do código.
