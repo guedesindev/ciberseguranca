@@ -394,6 +394,14 @@ Para o mundo real as curvas seguras e padronizadas já foram escolhidas:
 - secp256k1 (suado em Bitcoin e outras criptomoedas)
 - Curvas de Brainpool (oferece uma alternativa às curvas NIST)
 
+**Observação** Você usa chave ssh do github para subir seus commits? você já reparou que a transmissão dos dados para o github os dados são criptografados utilizando a curva25519?
+
+Quando fizer o push que for pedido para digitar a senha, observe a instrução que aguarda sua senha:
+
+```bash
+Enter passphrase for key '/c/Users/.../.ssh/id_ed25519': # é isso mesmo $id_ed25519
+```
+
 **Importante:** Não tente criar do zero a sua curva de criptografia, isso pode gerar vulnerabilidades em seu algoritmo de segurança.
 
 Como as duas curvas mais famosas são: secp256k1 (blockchain) e X25519 (IoT e WhatsApp), vamos usar em nosso exemplo a X25519.
