@@ -31,7 +31,7 @@ cd simetrica
 E executar o compando python:
 
 ```python
-python_simulacao.py
+python simulacao.py
 ```
 
 Verá o passo a passo no prompt da criação dos códigos públicos, chave pública, chave secreta, cifragem de mensagem e decifragem da mesma, de uma ponta a outra.
