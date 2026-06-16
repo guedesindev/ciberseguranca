@@ -8,7 +8,9 @@
 
 ### Simétrica
 
-Chave Cifra mesma Chave Decifra.
+A chave que cifra é a mesma chave que decifra.
+
+Antes de executar o teste leia um pouco da teoria por trás da criptografia simétrica [aqui](simetrica/teoria_simétrica.md)
 
 Como executar o teste
 
@@ -47,8 +49,13 @@ Módulos:
 
 ## Teoria por trás
 
-Para entender um pouco a respeito do assunto e métodos utilizados na construção da classe no arquivo `script_simetrica.py` leia o arquivo `![teoria.md]("./teoria.md")`
+Para entender um pouco a respeito do assunto e métodos utilizados na construção da classe no arquivo `script_simetrica.py` leia o arquivo [teoria.md](teoria.md)
 
 ### Assimétrica
 
-Importante que inicialmente leia as teorias nos arquivos `teaoria.md`. Somente depois tentar proceder com os testes do código.
+Importante que inicialmente leia as teorias nos arquivos [Teoria Criptografia Assimétrica](assimetrica/teoria_assimetrica.md), caso naõ tenha interesse na teoria geral, pode ler os documentos específicos aos algoritmos:
+
+- [RSA](assimetrica/rsa.md)
+- [ECC](assimetrica/ecc.md)
+
+Somente depois tentar proceder com os testes do código.
