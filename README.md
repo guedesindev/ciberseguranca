@@ -14,25 +14,39 @@ Antes de executar o teste leia um pouco da teoria por trás da criptografia sim�
 
 Como executar o teste
 
-Faça o clone 📑 do repositório em seu computador.
+1. Faça o clone 📑 do repositório em seu computador.
 
-Entre no repositório com o comando:
+   ```cmd
+      git clone git@github.com:guedesindev/ciberseguranca.git
+   ```
 
-```cmd
-cd ciberseguranca
-```
+2. Acesse o repositório com o comando:
 
-agora basta entrar no diretório simetrica
+   ```cmd
+      cd ciberseguranca
+   ```
 
-```cmd
-cd simetrica
-```
+3. Execute o ambiente virtual
 
-E executar o compando python:
+   ```cmd
+      #windows
+      venv\Scripts\activate
 
-```python
-python simulacao.py
-```
+      #linux ou mac
+      source venv/bin/activate
+    ```
+
+4. Acesse o diretório simetrica
+
+   ```cmd
+      cd simetrica
+   ```
+
+5. Execute o projeto
+
+   ```python
+      python simulacao.py
+    ```
 
 Verá o passo a passo no prompt da criação dos códigos públicos, chave pública, chave secreta, cifragem de mensagem e decifragem da mesma, de uma ponta a outra.
 
@@ -47,7 +61,7 @@ Módulos:
  cryptography
 ```
 
-## Teoria por trás
+## Teoria por trás da criptografia
 
 Para entender um pouco a respeito do assunto e métodos utilizados na construção da classe no arquivo `script_simetrica.py` leia o arquivo [teoria.md](teoria.md)
 
@@ -59,3 +73,40 @@ Importante que inicialmente leia as teorias nos arquivos [Teoria Criptografia As
 - [ECC](assimetrica/ecc.md)
 
 Somente depois tentar proceder com os testes do código.
+
+### Para testar o código
+
+1. Faça o clone do repositório:
+
+    ```cmd
+        git clone git@github.com:guedesindev/ciberseguranca.git
+    ```
+
+2. Acesse o repositório com o comando:
+
+    ```cmd
+        # acesse o  diretório cibersegurança
+        cd ciberseguranca
+    ```
+
+3. Execute o ambiente virtual
+
+   ```python
+     # windows
+     venv\Scripts\activate
+
+     # linux ou mac
+     source venv/bin/activate
+   ```
+
+4. Acesse o diretório assimetrica
+
+    ```cmd
+        cd assimetrica
+    ```
+
+5. Execute o projeto
+
+    ```cmd
+        python simulacao_rsa.py
+    ```

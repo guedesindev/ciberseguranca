@@ -193,8 +193,7 @@ class UserRSACryptography:
             encoding=serialization.Encoding.PEM,
             format=serialization.PublicFormat.SubjectPublicKeyInfo
         )
-
-        print(f"Chave pública pronta para ser enviada: {pem_publico.decode('utf-8')}")
+        print(f"[{self.nome}] chave pública compartilhada!")
         return pem_publico
 
     def get_public_key(self, pem_publico: str):
@@ -210,8 +209,6 @@ class UserRSACryptography:
                 algorithm=hashes.SHA256(),
                 label=None
             ))
-        
-        print(f"Mensagem cifrada: tipo:{type(mensagem_cifrada)}, {mensagem_cifrada.hex()[:60]}...\n")
 
         return mensagem_cifrada
     
@@ -226,10 +223,11 @@ class UserRSACryptography:
                     label=None
                 )
             )
-            print(f"Mensagem decifrada: {mensagem_decifrada}\n")
 
-            return mensagem_decifrada
-        
+            return mensagem_decifrada.decode('utf-8')
+
+##############
+# ------------        
 # ------------
 # Teste UsuárioBasico RSA
 print("="*35)
@@ -251,11 +249,13 @@ print(f"Chave Pública: (n, e): ({n},{e})")
 print(f"Chave Privada: d: {"*"*len(str(fernando._privada))}")
 
 
-mensagem_cifrada = fernando.cifrar_mensagem("Olá Mundo!", e, n)
-print(f"Mensagem cifrada: {mensagem_cifrada}")
+mensagem = input("Digite uma mensagem a cifrar: \nobs:Caso dê erro tente uma mensagem menor,\neste script gera uma chave pequena.\n").strip()
+
+mensagem_cifrada = fernando.cifrar_mensagem(mensagem, e, n)
+print(f"\n***Aqui está sua mensagem cifrada: {mensagem_cifrada}\n")
 
 mensagem_decifrada = fernando.decifrar_mensagem(mensagem_cifrada, n)
-print(f"Mensagem Decifrada: {mensagem_decifrada}")
+print(f"\n***Agora Decifrada: {mensagem_decifrada}\n")
 
 print("-"*35)
 
@@ -270,17 +270,18 @@ fernando = SuperRSAUser('Fernando')
 fernando.configurar_canal()
 
 print(f"\nO tamanho do 'n' do Fernando é de {fernando.n.bit_length()} bits")
-print(f"Exemplo do 'n' gerado (gigante): {fernando.n}\n")
+print(f"\nExemplo do 'n' gerado (gigante): {fernando.n}\n")
 
 mensagem_teste = 'Olá, Esta é uma mensagem de teste trasmitida como um único número totalmente seguro pelo canal do chat.'
 
 print(f"--- Enviando mensagem ---")
-numero_cifrado = fernando.cifrar(mensagem_teste, fernando.e, fernando.n)
-print(f"Mensagem enviada via pacotes do chat (Numero Cifrado): {numero_cifrado}")
+mensagem = input("Digite uma mensagem para cifrar: \nobs:Perceba que agora o limite de quantidade de caracteres da mensagem aumento 😉\n").strip()
+numero_cifrado = fernando.cifrar(mensagem, fernando.e, fernando.n)
+print(f"\nMensagem enviada via pacotes do chat (Numero Cifrado): {numero_cifrado}\n")
 
 print(f"\n--- Recebendo mensagem ---")
 mensagem_revelada = fernando.decifrar(numero_cifrado)
-print(f"Mensagem que apareceu no ecrã do receptor: '{mensagem_revelada}'")
+print(f"Mensagem que apareceu no ecrã do receptor: '{mensagem_revelada}'\n")
 
 
 # -----------------------
@@ -292,14 +293,20 @@ print("="*35)
 fernando = UserRSACryptography('Fernando')
 fernando.set_keys()
 
-mensagem = "Testando a cifradem com a lib cryptography"
-
 fernando.transmitir_chave_publica()
 
+mensagem = input("Digite uma mensagem a cifrar:\nAqui a coisa está mais profissional, pode mandar ver na menasgem 🚀\n").strip()
+
 mensagem_cifrada = fernando.cifrar_mensagem(mensagem, fernando.publica)
+print("="*35)
+print(f"\n***Aqui está sua mensagem cifrada: {mensagem_cifrada}\n")
 
 fernando.get_public_key(fernando.transmitir_chave_publica())
 
 mensagem_decifrada = fernando.decifrar_mensagem(mensagem_cifrada)
+print("="*35)
+print(f"\n***Agora Decifrada: {mensagem_decifrada}\n")
 
+print("-"*35)
+print("--- Fim dos Testes ---")
 print("-"*35)
