@@ -35,19 +35,19 @@ $$D_9 = { 1, 3, 9 }$$
 Para os conjuntos acima vemos que a interseção
 $$D_8 \cap D_9 = {1}$$
 
-A função $\phi$ ou Função de Eule (pronuncia-se Óiler) retorna a quantidade de números coprimos de n entre 1 e n.
+A função $\phi$ ou Função de Euler (pronuncia-se Óiler) retorna a quantidade de números coprimos de n entre 1 e n.
 
 Veja agora o cálculo da função phi para o número 8
 
 | Par | É coprimo de 8? |
 |:---:|:---:|
-| 8 e 1 | Sim |
-| 8 e 2 | Não, pois 2 é divisor de 8|
-| 8 e 3 | Sim |
-| 8 e 4 | Não, pois 4 é divisor de 8 |
-| 8 e 5 | Sim |
-| 8 e 6 | Não, pois 2 é divisor de 6 e 8|
-| 8 e 7 | Sim |
+| 1 | Sim |
+| 2 | Não, pois 2 é divisor de 8|
+| 3 | Sim |
+| 4 | Não, pois 4 é divisor de 8 |
+| 5 | Sim |
+| 6 | Não, pois 2 é divisor de 6 e 8|
+| 7 | Sim |
 
 Assim $\phi(8) = 4$
 

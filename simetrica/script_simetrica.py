@@ -20,6 +20,7 @@ class Chat_User:
 
     def configurar_novo_canal(self):
         def verificar_primo(n):
+            print(f"Verificando se {n} é primo")
             if n <= 1:
                 return False
             for i in range(2, int(n**0.5) + 1):
