@@ -11,7 +11,7 @@ class UserBasico:
         self._privada = secrets.choice(range(1, 1000000))
         self.publica = None
         self.expoent = None
-        self.p = None
+        self.g = None
         self.q = None
         self.n = None
         self.totiente_n = None
