@@ -158,3 +158,118 @@ mensagem_revelada = outro_usuario.decifrar_mensagem(ponto_R, texto_cifrado)
 print(f"Texto decifrado: {mensagem_revelada}")
 
 print("🌟 SUCESSO ABSOLUTO! A mensagem foi cifrada e decifrada.\n\n")
+
+# =====================================================================
+title = "=== IMPLEMENTAÇÃO DO ALGORITMO ECC COM BIBLIOTECA CRYPTOGRAPHY ==="
+print("\n" +"="*len(title))
+print(title)
+print("="*len(title) + "\n")
+
+# PASSOS FUNDAMENTAIS
+# 1. Geração do Par de Chaves: Cada usuário gera sua chave privada elíptica e extrai sua respectiva chave pública
+
+# 2. Aperto de Mão (ECDH): Igual ao algoritmo rsa é necessário compartilhar de um segredo Bruto.
+
+# 3. Derivação de Chave (HKDF): A chave simétrica não pode ser usada diretamente, é nessário que o segredo seja trabalhado por uma função de derivação de alto nível para gerar uma chave simétrica perfeitamente aleatória de 32 bytes (256 bits)
+
+# 4. Cifragem Simétrica Estilo Autenticada (AES-GCM): Com a chave eliptica derivada o AES-GCM é usado para cifrar e decifrar qualquer tamanho de mensagem com garantia de integridade.
+
+from cryptography.hazmat.primitives.asymmetric import x25519
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+import os
+
+class ChatECC:
+    def __init__(self, nome: str):
+        self.nome = nome
+
+        # Passo 1
+        self._chave_privada = x25519.X25519PrivateKey.generate()
+        self.chave_publica = self._chave_privada.public_key()
+
+    def exportar_chave_publica_bytes(self) -> bytes:
+        from cryptography.hazmat.privitives import serialization
+
+        return self.chave_publica.public_bytes(
+            encoding=serialization.Encoding.Raw,
+            format=serialization.PublicFormat.Raw
+        )
+    
+    def calcular_chave_simetrica_hkdf(self, chave_publica_outro_usuario) -> bytes:
+        """ Passo 2 e 3"""
+
+        # Passo 2 troca de chaves elípticas pura (ECDH)
+        segredo_bruto = self._chave_privada.exchange(chave_publica_outro_usuario)
+
+        # Passo 3: HKDF
+        chave_derivada = HKDF(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=None,
+            info=b"sessao-chat-criptografado"
+        ).derive(segredo_bruto)
+
+        return chave_derivada
+    
+    def cifrar_mensagem(self, mensagem:str, chave_simetrica: bytes) -> tuple[bytes, bytes]:
+        # Passo 4A: cifra o texto plano usando AES-GCM
+        texto_plano_bytes = mensagem.encode('utf-8')
+
+        nonce = os.urandom(12)
+
+        aesgcm = AESGCM(chave_simetrica)
+
+        texto_cifrado = aesgcm.encrypt(nonce, texto_plano_bytes, associated_data=None)
+
+        return nonce, texto_cifrado
+
+
+    def decifrar_mensagem(self, nonce: bytes, texto_cifrado: bytes, chave_simetrica: bytes) -> str:
+        # Passo 4B: Decifrar mensagem
+        aesgcm = AESGCM(chave_simetrica)
+
+        texto_plano_bytes = aesgcm.decrypt(nonce, texto_cifrado, associated_data=None)
+
+        return texto_plano_bytes.decode('utf-8')
+    
+
+
+# --------------------------------
+# ---- Laboratório Didático 3 ----
+# --------------------------------
+text = "=== INICIALIZANDO USUÁRIOS COMPONENTES ECC ==="
+print("\n"+"="*len(text))
+print(text)
+print("="*len(text)+"\n")
+
+# de volta a Alice e Bob
+alice = ChatECC("Alice")
+bob = ChatECC("Bob")
+
+print(f"Chave Privada Alice (Objeto em memória): {alice._chave_privada}")
+print(f"Chave Privada Bob (Objeto em memória): {bob._chave_privada}\n")
+
+print("=== APERTO DE MÃO (CONTRATAÇÃO DE CHAVE SIMÉTRICA) ===")
+chave_sessao_alice = alice.calcular_chave_simetrica_hkdf(bob.chave_publica)
+chave_sessao_bob = bob.calcular_chave_simetrica_hkdf(alice.chave_publica)
+
+print(f"Chave AES derivada pela Alice: {chave_sessao_alice.hex()}")
+print(f"Chave AES derivada pela Bob: {chave_sessao_bob.hex()}")
+assert chave_sessao_alice == chave_sessao_bob, "Erro: as chaves derivadas não coincidem!"
+
+print("✨ Chave simétrica idêntica estabelecida com sucesso nos dois lados!\n")
+
+print("\n=== FLUXO DE MENSAGEM CRIPTOGRAFADA")
+mensagem_original = input("Agora não há limites de tamanho de mensagem:\nDigite a mensagem que quer cifrar:\n").strip()
+print(f"\nAlice escreve: '{mensagem_original}'")
+
+# Crifragem da mensagem original
+nonce, pacote_cifrado = alice.cifrar_mensagem(mensagem_original, chave_sessao_alice)
+
+print(f"\n-> Nonce enviado: {nonce.hex()}")
+print(f"-> Texto cifrado em trânsito (Hex): {pacote_cifrado.hex()}\n")
+
+# Recepção do nonce e pacote cifrado para decifrá-la
+mensagem_recebida = bob.decifrar_mensagem(nonce, pacote_cifrado, chave_sessao_bob)
+print(f"\nBob recebeu e decifrou: {mensagem_recebida}")
